@@ -26,7 +26,6 @@ function generate(tamanhos, data) {
             backgroundColor: colors[index],
             borderColor: colors[index],
             borderWidth: 1,
-            tension: 0.2,
             xAxisID: 'xAxis1',
         }
         dataset.push(config);

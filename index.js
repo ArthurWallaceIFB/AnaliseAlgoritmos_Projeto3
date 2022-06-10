@@ -5,7 +5,7 @@ const chart = require("./chart");
 
 //EXECUÇÃO
 let tamanhosTeste = [10000, 100000, 1000000, 10000000];
-let qntRepeticoes = 1;
+let qntRepeticoes = 3;
 
 console.log("\n--- BUBBLE ---\n");
 let temposBubble = SqrtBubble.ExecutarSqrtSortBubble(tamanhosTeste, qntRepeticoes);
