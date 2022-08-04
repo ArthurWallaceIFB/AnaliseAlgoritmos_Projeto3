@@ -1,31 +1,33 @@
-const SqrtBubble = require("./Functions/SqrtSort_Bubble")
-const SqrtHeap = require("./Functions/SqrtSort_Heap");
-const chart = require("./chart");
+const Read = require("./Functions/ReadFiles");
+const FirstFit = require("./Functions/FirstFit");
+const NextFit = require("./Functions/NextFit");
+const BestFit = require("./Functions/BestFit");
+const Chart = require("./chart");
+
+let data = Read.readInputFiles();
 
 
-//EXECUÇÃO
-let tamanhosTeste = [10000, 100000, 1000000, 10000000];
-let qntRepeticoes = 3;
+let firstFit_result = FirstFit.executarFirstFit(data);
 
-console.log("\n--- BUBBLE ---\n");
-let temposBubble = SqrtBubble.ExecutarSqrtSortBubble(tamanhosTeste, qntRepeticoes);
-console.log(`Tempos Bubble:`);
-console.log(temposBubble);
+let nextFit_result = NextFit.executarNextFit(data);
 
-console.log("\n\n\n--- HEAP ---\n");
-let temposHeap = SqrtHeap.ExecutarSqrtSortHeap(tamanhosTeste, qntRepeticoes);
-console.log(`Tempos Heap:`);
-console.log(temposHeap);
-console.log("\n\n")
+let bestFit_result = BestFit.executarBestFit(data);
 
+let final_results = [];
+let tableStructure = [];
+data.map((file, i) => {
+    let obj = { id: file.num_itens, FirstFit: firstFit_result[i], NextFit: nextFit_result[i], BestFit: bestFit_result[i] };
+    final_results.push(obj);
 
-let results = {
-    "BubbleSort": temposBubble,
-    "HeapSort": temposHeap
-}
+    let tableObj = {QntItens: obj.id, FirstFit: (obj.FirstFit.aproximacao  + "%"), NextFit: (obj.NextFit.aproximacao + "%"), BestFit: (obj.BestFit.aproximacao + "%")};
+    tableStructure.push(tableObj);
+})
+
+console.table(tableStructure);
+
 
 console.log("\n---- GERANDO O GRÁFICO DA ANÁLISE ----\n")
-chart.generate(tamanhosTeste, results);
+Chart.generate(final_results);
 
 console.log("✅ Gráfico salvo com sucesso! ✅\n")
-console.log("Path: /graficos/AnaliseEmpirica.png\n\n");
+console.log("Path: /graficos/TemposDeExecucao.png\n\n");

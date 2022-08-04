@@ -1,33 +1,23 @@
 const fs = require('fs');
 const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
 
-function generate(resultados) {
+function generate(tamanhos, data) {
     const width = 900; //px
     const height = 500; //px
     const backgroundColour = 'white';
     const chartJSNodeCanvas = new ChartJSNodeCanvas({ width, height, backgroundColour });
 
     let colors = ["#FF6133", "#339FFF", "#AC33FF", "#3CBC61"];
-    let temposMetodos = {
-        "FirstFit": [],
-        "NextFit": [],
-        "BestFit": []
-    };
-
-    let qntItens = [];
-
-    resultados.map((file) => {
-        temposMetodos.FirstFit.push(file.FirstFit.tempoMedio);
-        temposMetodos.NextFit.push(file.NextFit.tempoMedio);
-        temposMetodos.BestFit.push(file.BestFit.tempoMedio);
-
-        qntItens.push(file.id)
-    })
 
     let dataset = [];
-    Object.keys(temposMetodos).map(function (method, index) {
+    Object.keys(data).map(function (method, index) {
+        let value = data[method];
         let methodName = method;
-        let tempos = temposMetodos[method];
+        let tempos = [];
+        Object.keys(value).map(function (key, index) {
+            let tempo = value[key];
+            tempos.push(tempo);
+        });
 
         let config = {
             label: methodName,
@@ -42,11 +32,10 @@ function generate(resultados) {
 
     });
 
-
     const configuration = {
         type: 'line',   // for line chart
         data: {
-            labels: qntItens,
+            labels: tamanhos,
 
             datasets: dataset
         },
@@ -54,10 +43,6 @@ function generate(resultados) {
             scales: {
                 y: {
                     suggestedMin: 0,
-                    title: {
-                        display: true,
-                        text: 'Tempo de execução (ms)'
-                    }
                 }
             },
             layout: {
@@ -71,7 +56,7 @@ function generate(resultados) {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Análise Empírica - Tempos de execução',
+                    text: 'Análise Empírica - SqrtSort',
                     font: { size: 20, weight: 'bold' }
                 },
                 legend: {
@@ -91,7 +76,7 @@ async function run(chartJSNodeCanvas, configuration) {
     var base64Data = base64Image.replace(/^data:image\/png;base64,/, "");
 
 
-    fs.writeFile(`graficos/TemposDeExecucao.png`, base64Data, 'base64', function (err) {
+    fs.writeFile(`graficos/AnaliseEmpirica.png`, base64Data, 'base64', function (err) {
         if (err) {
             console.log(err);
         }
