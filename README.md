@@ -14,4 +14,4 @@ node index.js;
 ```
 
 ## Exemplo de gráfico de tempo de execução
-![Gráfico Análise](./graficos/TemposDeExecução.png)
+![Gráfico Análise](./graficos/TemposDeExecucao.png)
