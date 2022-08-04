@@ -15,3 +15,6 @@ node index.js;
 
 ## Exemplo de gráfico de tempo de execução
 ![Gráfico Análise](./graficos/TemposDeExecucao.png)
+
+## Exemplo de tabela de assertivadade para cada método
+![Gráfico Análise](./graficos/TabelaAssertividade.png)
