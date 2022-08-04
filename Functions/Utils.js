@@ -26,7 +26,17 @@ function calcularMediaTempos(arr) {
     }
 
     return (sum / qnt).toFixed(3);
+}
 
+function calcularAproximacaoMedia(arr) {
+    let qnt = arr.length;
+    let sum = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+
+    return (sum / qnt);
 }
 
 function gerarArrayAleatorio(tamanho) {
@@ -39,4 +49,5 @@ function gerarArrayAleatorio(tamanho) {
 
 module.exports.separar = separar;
 module.exports.calcularMediaTempos = calcularMediaTempos;
+module.exports.calcularAproximacaoMedia = calcularAproximacaoMedia;
 module.exports.gerarArrayAleatorio = gerarArrayAleatorio;
