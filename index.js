@@ -6,12 +6,13 @@ const Chart = require("./chart");
 
 let data = Read.readInputFiles();
 
+let qntReps = 3;
 
-let firstFit_result = FirstFit.executarFirstFit(data);
+let firstFit_result = FirstFit.executarFirstFit(data, qntReps);
 
-let nextFit_result = NextFit.executarNextFit(data);
+let nextFit_result = NextFit.executarNextFit(data, qntReps);
 
-let bestFit_result = BestFit.executarBestFit(data);
+let bestFit_result = BestFit.executarBestFit(data, qntReps);
 
 let final_results = [];
 let tableStructure = [];
@@ -23,6 +24,7 @@ data.map((file, i) => {
     tableStructure.push(tableObj);
 })
 
+console.log("\n\n✅ Tabela de assertivade");
 console.table(tableStructure);
 
 

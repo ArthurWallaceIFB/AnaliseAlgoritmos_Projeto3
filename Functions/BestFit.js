@@ -1,6 +1,6 @@
 const Utils = require("./Utils");
 
-function executarBestFit(data) {
+function executarBestFit(data, qntReps) {
     let resultados = [];
 
     data.map((file) => {
@@ -9,7 +9,7 @@ function executarBestFit(data) {
         let items = file.items;
         let optimal_solution = file.optimal_solution;
 
-        let { tempoMedio, qnt_buckets } = criarBestFit(items, numItems, capacity, 1);
+        let { tempoMedio, qnt_buckets } = criarBestFit(items, numItems, capacity, qntReps);
 
         let aproximacao = (optimal_solution / qnt_buckets * 100).toFixed(2);
 
