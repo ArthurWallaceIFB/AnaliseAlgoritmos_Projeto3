@@ -6,7 +6,7 @@ const Chart = require("./chart");
 
 let data = Read.readInputFiles();
 
-let qntReps = 1;
+let qntReps = 3;
 
 let firstFit_result = FirstFit.executarFirstFit(data, qntReps);
 

@@ -1,7 +1,7 @@
 # Análise de Algoritmos - Projeto 3
 ### BIN-PACKING-OPTM e algoritmos aproximados
 
-Este projeto tem como objetivo principal comparar o tempo de complexidade do algoritmo de ordenação por seleção de raiz quadrada, mais conhecido como "SqrtSort", utilizando um método quadrático de ordenação "BubbleSort" e um método logarítmico através de Heaps.
+Este projeto tem como objetivo principal comparar o tempo de complexidade das soluções de aproximação para o problema de binpacking, utilizando os métodos First-Fit, Next-Fit e Best-Fit.
 
 
 ## Instruções de uso
