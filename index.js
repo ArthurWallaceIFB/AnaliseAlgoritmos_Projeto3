@@ -6,7 +6,7 @@ const Chart = require("./chart");
 
 let data = Read.readInputFiles();
 
-let qntReps = 3;
+let qntReps = 1;
 
 let firstFit_result = FirstFit.executarFirstFit(data, qntReps);
 
@@ -23,6 +23,9 @@ data.map((file, i) => {
     let tableObj = {QntItens: obj.id, FirstFit: (obj.FirstFit.aproximacao  + "%"), NextFit: (obj.NextFit.aproximacao + "%"), BestFit: (obj.BestFit.aproximacao + "%")};
     tableStructure.push(tableObj);
 })
+
+final_results = final_results.sort((a,b) => a.id - b.id);
+tableStructure = tableStructure.sort((a,b) => a.QntItens - b.QntItens);
 
 console.log("\n\n✅ Tabela de assertivade");
 console.table(tableStructure);
